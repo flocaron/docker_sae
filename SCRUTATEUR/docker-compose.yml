@@ -13,7 +13,7 @@ services:
     environment:
       IP: ${IP}
       PORT: 15000
-      UTILISE_SSL: false
+      UTILISE_SSL: "false"
       BDD_SCRUT_HOSTNAME: bddd
       BDD_PORT: 3306
   bdd_scrut:
