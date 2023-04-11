@@ -7,11 +7,11 @@ git clone https://github.com/flocaron/docker_sae.git
 
 # 2) install docker
 
-sudo apt install docker.io dokcer-compose -y
+sudo apt install docker.io docker-compose -y
 
 # 3) lancer docker
 
-cd SCRUTATEUR
+cd docker_sae/SERVEUR
 
-docker-compose up
+sudo docker-compose up
 
