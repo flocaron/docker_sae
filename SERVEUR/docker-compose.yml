@@ -10,9 +10,9 @@ services:
     ports:
       - "15000:15000"
     environment:
-      VEROUILLE: true
+      VEROUILLE: "true"
       PORT: 15000
-      UTILISE_SSL: false
+      UTILISE_SSL: "false"
       BDD: MYSQL
       BDD_HOSTNAME: bdd
     hostname: serveur_sae
