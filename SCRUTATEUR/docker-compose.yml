@@ -1,0 +1,34 @@
+version: "3"
+services:
+  scrutateur:
+    build:
+      context: .
+      dockerfile: Dockerfile.scrutateur
+    depends_on:
+      bdd_scrut:
+        condition: service_healthy
+    hostname: scrutateur_sae
+    networks:
+      - reseauscrut
+    environment:
+      IP: localhost
+      PORT: 15000
+      UTILISE_SSL: false
+      BDD_SCRUT_HOSTNAME: bddd
+      BDD_PORT: 3306
+  bdd_scrut:
+    build:
+      context: .
+      dockerfile: Dockerfile.bdd
+    hostname: bddd
+    networks:
+      - reseauscrut
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-P", "3306", "-proot"]
+      interval: 2s
+      timeout: 6s
+      retries: 15
+
+networks:
+  reseauscrut:
+    external: true

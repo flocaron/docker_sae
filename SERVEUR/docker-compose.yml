@@ -1,0 +1,40 @@
+version: "3"
+services:
+  serveur:
+    build:
+      context: .
+      dockerfile: Dockerfile.serveur
+    depends_on:
+      bdd:
+        condition: service_healthy
+    ports:
+      - "15000:15000"
+    environment:
+      VEROUILLE: true
+      PORT: 15000
+      UTILISE_SSL: false
+      BDD: MYSQL
+      BDD_HOSTNAME: bdd
+    hostname: serveur_sae
+    networks:
+      - reseaux
+    stdin_open: true
+    tty: true
+
+  bdd:
+    build:
+      context: .
+      dockerfile: Dockerfile.bdd
+    ports:
+      - "3306:3306"
+    networks:
+      - reseaux
+    hostname: bdd
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-P", "3306", "-proot"]
+      interval: 2s
+      timeout: 6s
+      retries: 15
+networks:
+  reseaux:
+

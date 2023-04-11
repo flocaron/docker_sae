@@ -1,7 +1,0 @@
-FROM openjdk:19-oracle
-
-WORKDIR /app
-
-COPY serveur2.jar /app
-
-CMD ["java", "-jar", "serveur2.jar"]
